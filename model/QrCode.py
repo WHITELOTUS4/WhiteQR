@@ -25,7 +25,7 @@ def generate_qr_code(link, fcolor, bcolor, version, box, border):
         return filename'''
 
         buffered = BytesIO()
-        img.save(buffered, format="PNG")
+        #img.save(buffered, format="PNG")
         
         # Convert the bytes to base64-encoded string
         img_base64 = base64.b64encode(buffered.getvalue()).decode('utf-8')
