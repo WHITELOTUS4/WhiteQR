@@ -2,6 +2,8 @@ import sys
 import os
 import qrcode #install it using  pip install qrcode[pil] 
 import ast
+import base64
+from io import BytesIO
 
 def generate_qr_code(link, fcolor, bcolor, version, box, border):
     try:
@@ -16,11 +18,20 @@ def generate_qr_code(link, fcolor, bcolor, version, box, border):
 
         img = qr.make_image(fill_color = fcolor, back_color = bcolor)
 
-        filename = "./images/qr_code.png"
+        '''filename = "./images/qr_code.png"
         file_path = os.path.join(os.getcwd(), filename)
         img.save(file_path)
         
-        return filename
+        return filename'''
+
+        buffered = BytesIO()
+        img.save(buffered, format="PNG")
+        
+        # Convert the bytes to base64-encoded string
+        img_base64 = base64.b64encode(buffered.getvalue()).decode('utf-8')
+        img_data_uri = f"data:image/png;base64,{img_base64}"
+
+        return img_data_uri
 
     except Exception as e:
         print(f"An error occurred while generating the QR code: {e}")
