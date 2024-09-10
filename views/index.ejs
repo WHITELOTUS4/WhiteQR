@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="description"content="WHITE QR is a simple Qr code creater website which is doing, link to qr code image etc."/>
+    <meta name="author" contant="Krishnendu Mitra"/>
+    <title version="1.0">WHITE QR</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../public/App.css" />
+    <link rel="icon" href="../public/favicon.ico" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="max-w-4xl mx-auto p-6 bg-white">
+        <h1 class="text-3xl font-bold text-center mb-4">QR Code Generator</h1>
+        <hr class="border-t-4 border-blue-500 mb-8 w-1/4 mx-auto" />
+        <form>
+            <div class="flex flex-col md:flex-row">
+                <div class="w-full md:w-2/3 mb-8 md:mb-0 md:mr-5">
+                    <div class="mb-6">
+                        <textarea class="w-full h-24 input-box form-control" placeholder="Enter your text or link here..." name="link" id="link-input" required></textarea>
+                    </div>
+                    <div class="w-full button-primary font-semibold text-lg rounded-md" onclick="system.submit();"><i class="fa fa-qrcode"></i> Generate QR Code</div>
+                    <div class="my-8 flex justify-center">
+                        <div class="empty-qr">
+                        </div>
+                    </div>
+                    <div class="flex justify-center space-x-4 items-center">
+                        <div class="w-1/3 button-primary font-semibold text-lg rounded-md"><i class="fa fa-download"></i> Download</div>
+                        <input type="text" class="w-2/3 input-box text-center" value="http://github.com/kidKrishkode" readonly />
+                    </div>
+                </div>
+                <div class="w-full md:w-1/3 ml-0 md:ml-6 space-y-4">
+                    <div>
+                        <label class="block mb-2 font-semibold">Image format</label>
+                        <div class="flex space-x-4">
+                            <div class="w-1/2 py-2 font-semibold border border-black rounded-md bg-blue-500 text-white">PNG</div>
+                            <div class="w-1/2 py-2 font-semibold border border-black rounded-md">JPEG</div>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block mb-2 font-semibold">QR Code version (1-40)</label>
+                        <input type="number" class="w-full input-box form-control" name="ver" value="1" id="version-input" required />
+                    </div>
+                    <div>
+                        <label class="block mb-2 font-semibold">Foreground color</label>
+                        <input type="color" class="w-full h-10 input-box form-control input-coolor" name="fc" value="#000000" id="fore-input" required />
+                    </div>
+                    <div>
+                        <label class="block mb-2 font-semibold">Background color</label>
+                        <input type="color" class="w-full h-10 input-box form-control input-coolor" name="bc" value="#ffffff" id="back-input" required />
+                    </div>
+                    <div class="flex space-x-4">
+                        <div>
+                            <label class="block mb-2 font-semibold">Box size</label>
+                            <input type="number" class="w-full input-box form-control" name="box" value="20" id="box-input" required />
+                        </div>
+                        <div>
+                            <label class="block mb-2 font-semibold">Border size</label>
+                            <input type="number" class="w-full input-box form-control" name="bor" value="2" id="bor-input" required />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+<script src="../public/App.js"></script>
+</html>

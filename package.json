@@ -1,0 +1,32 @@
+{
+  "name": "server-side",
+  "version": "1.0.0",
+  "description": "Qr code genareter tutorial using jprn stack tech in hex framework, use pre build libary functions.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kidKrishkode/QrCode"
+  },
+  "keywords": [
+    "qr code",
+    "qr genareter",
+    "jprn",
+    "kidKrishkode",
+    "website",
+    "python",
+    "node",
+    "ml"
+  ],
+  "author": "Krishnendu Mitra",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2"
+  }
+}
