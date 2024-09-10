@@ -25,9 +25,9 @@ app.get('/', (req, res) => {
 app.post('/create', async (req, res) => {
     const listOfInput = req.body.data;
     await callPythonProcess(listOfInput, 'generate').then(result => {
-        const imageBuffer = fs.readFileSync(path.resolve(result));
-        const base64Img = `data:image/png;base64,${imageBuffer.toString('base64')}`;
-        res.status(200).json({img_path: base64Img});
+        //const imageBuffer = fs.readFileSync(path.resolve(result));
+        //const base64Img = `data:image/png;base64,${imageBuffer.toString('base64')}`;
+        res.status(200).json({img_path: result});
     }).catch(error => {
         console.log(error.message);
     });
