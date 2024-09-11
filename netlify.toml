@@ -1,0 +1,11 @@
+[build]
+  # Directory where your built files (HTML, CSS, JS) are located
+  publish = "build"  # Or "dist", depending on your project structure
+
+  # The command to build your project
+  command = "npm run build"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
