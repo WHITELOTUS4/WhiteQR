@@ -23,11 +23,11 @@ app.get('/', (req, res) => {
 });
 
 app.post('/create', async (req, res) => {
-    const listOfInput = req.body.data;
+    const listOfInput = [req.body.data, path.join(__dirname, 'images/qr_code.png')];
     await callPythonProcess(listOfInput, 'generate').then(result => {
-        //const imageBuffer = fs.readFileSync(path.resolve(result));
-        //const base64Img = `data:image/png;base64,${imageBuffer.toString('base64')}`;
-        res.status(200).json({img_path: result});
+        const imageBuffer = fs.readFileSync(path.resolve(result));
+        const base64Img = `data:image/png;base64,${imageBuffer.toString('base64')}`;
+        res.status(200).json({img_path: base64Img});
     }).catch(error => {
         console.log(error.message);
     });
