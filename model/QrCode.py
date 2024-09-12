@@ -5,7 +5,7 @@ import ast
 import base64
 from io import BytesIO
 
-def generate_qr_code(link, fcolor, bcolor, version, box, border):
+def generate_qr_code(link, fcolor, bcolor, version, box, border, path):
     try:
         qr = qrcode.QRCode(
             version = version,
@@ -18,32 +18,32 @@ def generate_qr_code(link, fcolor, bcolor, version, box, border):
 
         img = qr.make_image(fill_color = fcolor, back_color = bcolor)
 
-        '''filename = "./images/qr_code.png"
-        file_path = os.path.join(os.getcwd(), filename)
-        img.save(file_path)
+        filename = "./images/qr_code.png"
+        #file_path = os.path.join(os.getcwd(), filename)
+        img.save(path)
         
-        return filename'''
+        return path
 
-        buffered = BytesIO()
+       ''' buffered = BytesIO()
         #img.save(buffered, format="PNG")
         
         # Convert the bytes to base64-encoded string
         img_base64 = base64.b64encode(buffered.getvalue()).decode('utf-8')
         img_data_uri = f"data:image/png;base64,{img_base64}"
 
-        return img_data_uri
+        return img_data_uri'''
 
     except Exception as e:
-        print(f"An error occurred while generating the QR code: {e}")
-        return None
+       # print(f"An error occurred while generating the QR code: {e}")
+        return path
     
 def generate(input_list):
     if './model/main.py' in sys.argv[0]:
         input_list = [str(X) for X in input_list[0].split(',')]
     
-    link, fcolor, bcolor, version, box, border = input_list
+    link, fcolor, bcolor, version, box, border, path = input_list
 
-    qr_image_path = generate_qr_code(link, fcolor, bcolor, int(version), int(box), int(border))
+    qr_image_path = generate_qr_code(link, fcolor, bcolor, int(version), int(box), int(border), path.replace('\\','/'))
 
     return qr_image_path
 
