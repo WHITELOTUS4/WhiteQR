@@ -36,7 +36,7 @@ app.post('/create', async (req, res) => {
 
 function callPythonProcess(list, functionValue) {
     return new Promise((resolve, reject) => {
-        const command = `python ./model/main.py ${list} ${functionValue}`;
+        const command = `python3 ./model/main.py ${list} ${functionValue}`;
         exec(command, (error, stdout, stderr) => {
             if (error) {
                 console.error(`exec error: ${error.message}`);
