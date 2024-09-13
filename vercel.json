@@ -5,7 +5,8 @@
       "src": "./index.js",
       "use": "@vercel/node",
       "config": {
-        "install-python": true
+        "install-python": true,
+        "PYTHON_VERSION": "3.9"
       }
     }
   ],
