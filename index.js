@@ -3,7 +3,8 @@ const http = require('http');
 const path = require('path');
 const fs = require('fs');
 const bodyParser = require('body-parser');
-const {spawn} = require('child_process');
+//const {spawn} = require('child_process');
+const {exec} = require('child_process');
 
 const app = express();
 let server = http.createServer(app);
@@ -33,7 +34,37 @@ app.post('/create', async (req, res) => {
     });
 });
 
-function callPythonProcess(list, functionValue){
+function callPythonProcess(list, functionValue) {
+    return new Promise((resolve, reject) => {
+        const command = `python ./model/main.py ${list} ${functionValue}`;
+        exec(command, (error, stdout, stderr) => {
+            if (error) {
+                console.error(`exec error: ${error.message}`);
+                reject(error);
+                return;
+            }
+            if (stderr) {
+                console.error(`stderr: ${stderr}`);
+            }
+
+            let result = null;
+            try {
+                if (typeof stdout === 'string') {
+                    result = JSON.parse(stdout);
+                } else {
+                    result = stdout;
+                }
+                resolve(result);
+            } catch (error) {
+                console.error(`Error parsing JSON: ${error.message}`);
+                reject(new Error("Error parsing JSON from Python script"));
+            }
+        });
+    });
+}
+
+
+/*function callPythonProcess(list, functionValue){
     return new Promise((resolve, reject) => {
         const pythonProcess = spawn('python', ['./model/main.py', list, functionValue]);
         let resultData = '';
@@ -61,7 +92,7 @@ function callPythonProcess(list, functionValue){
             }
         });
     });
-}
+}*/
 
 app.get('*', (req, res) => {
     res.status(404).render('notfound',{error: 404, message: "Page not found on this url, check the source or report it"});
